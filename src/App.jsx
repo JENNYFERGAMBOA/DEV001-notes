@@ -1,34 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import Home from './components/Home';
+import Logueo from './components/Logueo';
+import React, { useState } from 'react'; 
+import './App.css';
+
+import firebaseApp from '../credenciales';
+import {getAuth, onAuthStateChanged}  from 'firebase/auth';
+const auth = getAuth(firebaseApp)
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [usuarioGlobal, setUsuarioGlobal] = useState(null);
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Remember Notes</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
+  onAuthStateChanged(auth,(usuarioFirebase)=>{
 
-export default App
+    if(usuarioFirebase){
+      //código en caso de que haya sesión iniciada
+      setUsuarioGlobal(usuarioFirebase);
+    } else{
+      //código en casod e que no haya sesión iniciada
+      setUsuarioGlobal(null);
+    }
+  });
+
+  return <>{usuarioGlobal ? <Home/> : <Logueo/>}</>;
+};
+
+export default App;

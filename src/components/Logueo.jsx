@@ -28,16 +28,16 @@ const Logueo = () => {
               <h1>{estaRegistrandose ? "Registrate" : "Inicia Sesión"}</h1>
                 <div id="login">
                     <form id="loginform" onSubmit={submitHandler}>
-                        <label for="usuario">Usuario</label>
-                        <input id="usuario" type="text" name="usuario" placeholder="Usuario" required></input>
+                        <label for="usuario">Usuario </label>
+                        <input id="usuario" type="text" name="usuario" placeholder="Usuario" required></input><br></br>
                         
-                        <label for="password">Contraseña</label>
-                        <input id="password" type="password" placeholder="Contraseña" name="password" required></input>
+                        <label for="password">Contraseña </label>
+                        <input id="password" type="password" placeholder="Contraseña" name="password" required></input> <br></br>
                         
                         <button type="submit" title="ingresar" name="Ingresar"> {estaRegistrandose ? "Registrate" : "Inicia Sesión"}</button>
                     </form> 
 
-                    <button type="submit" title="ingresarConGmail" name="Ingresar" onClick={()=> signInWithRedirect(auth, googleProvider)}> IngresarConGmail </button>
+                    <button type="submit" title="ingresarConGmail" name="Ingresar" onClick={()=> signInWithRedirect(auth, googleProvider)}> IngresarConGmail </button><br></br>
 
                     <button type="submit" title="ingresarConGmail" name="Ingresar" onClick={()=>  setEstaRegistrandose(!estaRegistrandose)}>
                         {estaRegistrandose 
